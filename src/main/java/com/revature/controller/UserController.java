@@ -35,24 +35,6 @@ public class UserController {
 		this.userv = userv;
 	}
 	
-
-	@PostMapping("/login") // http://localhost:5000/api/users/login
-	public User login(@RequestBody Credentials creds, HttpServletResponse response) {
-
-		// TODO: implemnet AOP to catch the exception that could be thrown in the service layer
-		User user = userv.getByCredentials(creds);
-
-		// NullPointerException=
-		if (user != null) {
-			// return the user as JSON
-			return user;
-
-		} else {
-			// 3. otherwise deny and send 401 status
-			response.setStatus(401); // 401 is an UNAUTHORIZED status
-			return null; // TODO: maybe return User object with ID of 0
-		}
-	}
 	
 	/**
 	 * Return all users by sending a GET request to http://localhost:5000/api/users
