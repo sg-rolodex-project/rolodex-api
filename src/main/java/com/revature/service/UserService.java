@@ -30,6 +30,12 @@ public class UserService {
 		this.userRepo = userRepo;
 		this.addressRepo = addressRepo;
 	}
+	
+	public int divide(int x, int y ) throws ArithmeticException{
+		
+		return x/y;
+	}
+	
 
 	// login method
 	public User getByCredentials(Credentials creds) { // A DTO is an object that represents the BARE MINIMUM of the data we need
@@ -76,14 +82,14 @@ public class UserService {
 	}
 	
 	@Transactional(readOnly = true)
-	public User getByUsername(String username) {
+	public User getByUsername(String username) throws UserNotFoundException{
 
 		return userRepo.findByUsername(username) // in the case that no User object can be returned, throw an exception
 				.orElseThrow(() -> new UserNotFoundException("No user found with username " + username));
 	}
 	
 	@Transactional(readOnly = true)
-	public User getById(int id) {
+	public User getById(int id) { 
 
 		if (id <= 0) {
 			log.warn("Id cannot be <= 0. Id passed was: {}", id);

@@ -65,6 +65,12 @@ public class User {
 	inverseJoinColumns = @JoinColumn(name="address_id"))
 	private Set<Address> addresses;
 	
+//	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+//	@JoinColumn(name="jail_foreign_key") // creates a separate column with FK
+//	Jail jailHolder;
+	
+	
+	
 	/**
 	 * Regarding the validation constraints on some of the fields
 	 * 
